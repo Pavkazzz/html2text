@@ -240,6 +240,7 @@ def escape_md_section(text, snob=False, href=False):
 
     if not href:
         text = text.replace(r'_', r'\_')
+        text = text.replace(r'*', r'\*')
 
     # text = config.RE_MD_DOT_MATCHER.sub(r"\1\\\2", text)
     # text = config.RE_MD_PLUS_MATCHER.sub(r"\1\\\2", text)

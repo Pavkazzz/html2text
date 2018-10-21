@@ -922,14 +922,6 @@ class HTML2Text(HTMLParser.HTMLParser):
                     newlines += 1
 
         res_split = result.split("\n")
-        for i in range(len(res_split)):
-            if '*' in res_split[i] and res_split[i].count('*') == 1:
-                res_split[i] = res_split[i].strip()
-                res_split[i] += '*'
-
-        result = '\n'.join(res_split)
-
-        res_split = result.split("\n")
         insert_list = []
         for i in range(len(res_split)):
             data = res_split[i].count('| ')
