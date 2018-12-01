@@ -32,8 +32,7 @@ from html2text.utils import (
     dumb_css_parser,
     escape_md_section,
     skipwrap,
-    pad_tables_in_text,
-    length)
+    pad_tables_in_text)
 
 try:
     chr = unichr
