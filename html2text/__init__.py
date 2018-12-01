@@ -7,7 +7,6 @@ from __future__ import unicode_literals
 import re
 import sys
 
-import cached_property
 from PIL import ImageFont
 
 try:
@@ -137,6 +136,7 @@ class HTML2Text(HTMLParser.HTMLParser):
         self.preceding_stressed = False
         self.preceding_data = None
         self.current_tag = None
+        self.font = ImageFont.truetype("LucidaGrande.ttc", 14, encoding="unic")
 
         try:
             del unifiable_n[name2cp('nbsp')]
@@ -900,7 +900,8 @@ class HTML2Text(HTMLParser.HTMLParser):
         if not self.wrap_links:
             self.inline_links = True
         for para in text.split("\n"):
-            if length(para) > 0:
+            para = PILText(para, self.font)
+            if para:
                 if not skipwrap(para, self.wrap_links):
                     result += "\n".join(
                         wrap(para, self.body_width, break_long_words=False)
@@ -953,15 +954,6 @@ class HTML2Text(HTMLParser.HTMLParser):
         return '\n'.join(res_split)
 
 
-@cached_property
-def font():
-    return ImageFont.truetype("LucidaGrande.ttc", 14, encoding="unic")
-
-
-def length(text: str):
-    return font.getsize(text)
-
-
 def html2text(html, baseurl='', bodywidth=None):
     if bodywidth is None:
         bodywidth = config.BODY_WIDTH
@@ -975,6 +967,16 @@ def unescape(s, unicode_snob=False):
     h.unicode_snob = unicode_snob
 
     return h.unescape(s)
+
+
+class PILText(str):
+    def __init__(self, text: str, font):
+        super().__init__()
+        self.text = text
+        self.font = font
+
+    def __len__(self):
+        return self.font.getsize(self.text)
 
 
 if __name__ == "__main__":
