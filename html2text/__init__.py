@@ -980,7 +980,7 @@ class PILText(str):
         self.font = font
 
     def __len__(self):
-        return self.font.getsize(self.__str__())[1]
+        return self.font.getsize(self.__str__())[0]
 
 
 class TextWrapper(BaseTextWrapper):
