@@ -11,7 +11,7 @@ from PIL import ImageFont
 from PIL.ImageFont import FreeTypeFont
 
 try:
-    from textwrap import wrap
+    from textwrap import wrap, TextWrapper as BaseTextWrapper
 except ImportError:  # pragma: no cover
     pass
 
@@ -905,7 +905,7 @@ class HTML2Text(HTMLParser.HTMLParser):
             if para:
                 if not skipwrap(para, self.wrap_links):
                     result += "\n".join(
-                        wrap(para, self.body_width, break_long_words=False)
+                        wrap(para, self.body_width, self.font, break_long_words=False)
                     )
                     if para.endswith('  '):
                         result += "  \n"
@@ -981,6 +981,38 @@ class PILText(str):
 
     def __len__(self):
         return self.font.getsize(self.__str__())[1]
+
+
+class TextWrapper(BaseTextWrapper):
+
+    def wrap(self, text, font=None):
+        """wrap(text : string) -> [string]
+
+        Reformat the single paragraph in 'text' so it fits in lines of
+        no more than 'self.width' columns, and return a list of wrapped
+        lines.  Tabs in 'text' are expanded with string.expandtabs(),
+        and all other whitespace characters (including newline) are
+        converted to space.
+        """
+        chunks = self._split_chunks(text)
+        chunks = [PILText(chunk, font) for chunk in chunks]
+        if self.fix_sentence_endings:
+            self._fix_sentence_endings(chunks)
+        return self._wrap_chunks(chunks)
+
+
+def wrap(text, width=70, font=None, **kwargs):
+    """Wrap a single paragraph of text, returning a list of wrapped lines.
+
+    Reformat the single paragraph in 'text' so it fits in lines of no
+    more than 'width' columns, and return a list of wrapped lines.  By
+    default, tabs in 'text' are expanded with string.expandtabs(), and
+    all other whitespace characters (including newline) are converted to
+    space.  See TextWrapper class for available keyword args to customize
+    wrapping behaviour.
+    """
+    w = TextWrapper(width=width, **kwargs)
+    return w.wrap(text, font)
 
 
 if __name__ == "__main__":
