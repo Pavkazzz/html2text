@@ -8,6 +8,7 @@ import re
 import sys
 
 from PIL import ImageFont
+from PIL.ImageFont import FreeTypeFont
 
 try:
     from textwrap import wrap
@@ -968,16 +969,16 @@ def unescape(s, unicode_snob=False):
 
     return h.unescape(s)
 
-
 class PILText(str):
-    def __init__(self, text: str, font):
-        super().__init__()
-        self.text = text
+
+    def __new__(cls, value: str, font: FreeTypeFont = None):
+        return super().__new__(cls, value)
+
+    def __init__(self, value, font: FreeTypeFont = None):
         self.font = font
 
     def __len__(self):
-        return self.font.getsize(self.text)
-
+        return self.font.getsize(self.__str__())[1]
 
 if __name__ == "__main__":
     from html2text.cli import main
