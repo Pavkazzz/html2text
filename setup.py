@@ -19,7 +19,7 @@ try:
 except ImportError:
     read_md = read_md_open
 
-requires_list = ["Pillow_SIMD", "cached_property"]
+requires_list = []
 try:
     import unittest2 as unittest
 except ImportError:
@@ -87,6 +87,7 @@ setup(
     """,
     license='GNU GPL 3',
     requires=requires_list,
+    install_requires=["Pillow-SIMD", "cached-property"],
     packages=find_packages(exclude=['test']),
     include_package_data=True,
     zip_safe=False,
