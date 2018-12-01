@@ -3,8 +3,12 @@
 """html2text: Turn HTML into equivalent Markdown-structured text."""
 from __future__ import division
 from __future__ import unicode_literals
+
 import re
 import sys
+
+import cached_property
+from PIL import ImageFont
 
 try:
     from textwrap import wrap
@@ -28,8 +32,8 @@ from html2text.utils import (
     dumb_css_parser,
     escape_md_section,
     skipwrap,
-    pad_tables_in_text
-)
+    pad_tables_in_text,
+    length)
 
 try:
     chr = unichr
@@ -897,7 +901,7 @@ class HTML2Text(HTMLParser.HTMLParser):
         if not self.wrap_links:
             self.inline_links = True
         for para in text.split("\n"):
-            if len(para) > 0:
+            if length(para) > 0:
                 if not skipwrap(para, self.wrap_links):
                     result += "\n".join(
                         wrap(para, self.body_width, break_long_words=False)
@@ -948,6 +952,15 @@ class HTML2Text(HTMLParser.HTMLParser):
                 insert_list[i] = insert_list[i - 1]
 
         return '\n'.join(res_split)
+
+
+@cached_property
+def font():
+    return ImageFont.truetype("LucidaGrande.ttc", 14, encoding="unic")
+
+
+def length(text: str):
+    return font.getsize(text)
 
 
 def html2text(html, baseurl='', bodywidth=None):

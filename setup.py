@@ -14,11 +14,12 @@ def read_md_open(f):
 
 try:
     from pypandoc import convert
+
     read_md = read_md_convert
 except ImportError:
     read_md = read_md_open
 
-requires_list = []
+requires_list = ["cached-property", "Pillow-SIMD"]
 try:
     import unittest2 as unittest
 except ImportError:
