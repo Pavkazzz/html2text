@@ -940,9 +940,6 @@ class HTML2Text(HTMLParser.HTMLParser):
 
         assert len(insert_list), len(res_split)
 
-        # for i in range(len(res_split)):
-        #     print(res_split[i], insert_list[i])
-
         for i in range(len(res_split)):
             if i == 0 or i == len(res_split) - 1:
                 pass
