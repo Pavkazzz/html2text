@@ -969,16 +969,19 @@ def unescape(s, unicode_snob=False):
 
     return h.unescape(s)
 
+
 class PILText(str):
 
     def __new__(cls, value: str, font: FreeTypeFont = None):
         return super().__new__(cls, value)
 
+    # noinspection PyMissingConstructor
     def __init__(self, value, font: FreeTypeFont = None):
         self.font = font
 
     def __len__(self):
         return self.font.getsize(self.__str__())[1]
+
 
 if __name__ == "__main__":
     from html2text.cli import main

@@ -19,7 +19,7 @@ try:
 except ImportError:
     read_md = read_md_open
 
-requires_list = ["cached-property", "Pillow-SIMD"]
+requires_list = []
 try:
     import unittest2 as unittest
 except ImportError:
