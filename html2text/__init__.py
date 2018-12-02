@@ -136,7 +136,7 @@ class HTML2Text(HTMLParser.HTMLParser):
         self.preceding_stressed = False
         self.preceding_data = None
         self.current_tag = None
-        self.font = ImageFont.truetype("assets/rmedium.ttf", 14, encoding="unic")
+        self.font = ImageFont.truetype("../assets/rmedium.ttf", 14, encoding="unic")
 
         try:
             del unifiable_n[name2cp('nbsp')]
