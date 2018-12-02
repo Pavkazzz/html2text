@@ -52,7 +52,7 @@ class RunTests(Command):
 
 setup(
     name="html2text",
-    version=".".join(map(str, __import__('html2text').__version__)),
+    version=".".join(map(str, (2018, 1, 9))),
     description="Turn HTML into equivalent Markdown-structured text.",
     long_description=read_md('README.md'),
     author="Aaron Swartz",

@@ -41,8 +41,6 @@ except NameError:
     # python3 uses chr
     nochr = str('')
 
-__version__ = (2018, 1, 9)
-
 # TODO:
 # Support decoded entities with UNIFIABLE.
 
