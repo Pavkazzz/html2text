@@ -41,7 +41,7 @@ except NameError:
     # python3 uses chr
     nochr = str('')
 
-
+__version__ = (2018, 1, 9)
 
 # TODO:
 # Support decoded entities with UNIFIABLE.
@@ -136,7 +136,7 @@ class HTML2Text(HTMLParser.HTMLParser):
         self.preceding_stressed = False
         self.preceding_data = None
         self.current_tag = None
-        self.font = ImageFont.truetype("LucidaGrande.ttc", 14, encoding="unic")
+        self.font = ImageFont.truetype("assets/rmedium.ttf", 14, encoding="unic")
 
         try:
             del unifiable_n[name2cp('nbsp')]
