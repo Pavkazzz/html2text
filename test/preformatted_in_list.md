@@ -1,7 +1,9 @@
-  * Run this command: 
+  * Run this command:
+
     
         ls -l *.html
 
   * ?
+
   * Profit!
 

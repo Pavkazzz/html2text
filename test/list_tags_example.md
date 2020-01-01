@@ -26,7 +26,9 @@ Drums
     Nicko McBrain
 
   * some item
+
   * Some other item
+
   * some item
 
   1. Some other item
@@ -36,5 +38,6 @@ Drums
   3. some item
 
   * something else here
+
   * some item
 

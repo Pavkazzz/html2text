@@ -8,7 +8,6 @@ import re
 import sys
 
 from PIL import ImageFont
-from PIL.ImageFont import FreeTypeFont
 
 try:
     from textwrap import wrap, TextWrapper as BaseTextWrapper
@@ -33,16 +32,6 @@ from html2text.utils import (
     escape_md_section,
     skipwrap,
     pad_tables_in_text)
-
-try:
-    chr = unichr
-    nochr = unicode('')
-except NameError:
-    # python3 uses chr
-    nochr = str('')
-
-# TODO:
-# Support decoded entities with UNIFIABLE.
 
 
 class HTML2Text(HTMLParser.HTMLParser):
@@ -134,7 +123,7 @@ class HTML2Text(HTMLParser.HTMLParser):
         self.preceding_stressed = False
         self.preceding_data = None
         self.current_tag = None
-        self.font = ImageFont.truetype("rmedium.ttf", 14, encoding="unic")
+        self.font = None  # type: ImageFont
 
         try:
             del unifiable_n[name2cp('nbsp')]
@@ -166,16 +155,14 @@ class HTML2Text(HTMLParser.HTMLParser):
         self.pbr()
         self.o('', 0, 'end')
 
-        outtext = nochr.join(self.outtextlist)
+        outtext = ''.join(self.outtextlist)
 
         if self.unicode_snob:
             nbsp = chr(name2cp('nbsp'))
         else:
             nbsp = chr(32)
-        try:
-            outtext = outtext.replace(unicode('&nbsp_place_holder;'), nbsp)
-        except NameError:
-            outtext = outtext.replace('&nbsp_place_holder;', nbsp)
+
+        outtext = outtext.replace('&nbsp_place_holder;', nbsp)
 
         # Clear self.outtextlist to avoid memory leak of its content to
         # the next handling.
@@ -898,7 +885,8 @@ class HTML2Text(HTMLParser.HTMLParser):
         if not self.wrap_links:
             self.inline_links = True
         for para in text.split("\n"):
-            para = PILText(para, self.font)
+            if self.font:
+                para = PILText(para, self.font)
             if para:
                 if not skipwrap(para, self.wrap_links):
                     result += "\n".join(
@@ -966,15 +954,16 @@ def unescape(s, unicode_snob=False):
 
 class PILText(str):
 
-    def __new__(cls, value: str, font: FreeTypeFont = None):
+    def __new__(cls, value: str, font: ImageFont.FreeTypeFont = None):
         return super().__new__(cls, value)
 
     # noinspection PyMissingConstructor
-    def __init__(self, value, font: FreeTypeFont = None):
+    def __init__(self, value, font: ImageFont.FreeTypeFont = None):
         self.font = font
 
     def __len__(self):
-        return self.font.getsize(self.__str__())[0]
+        size, *_ = self.font.getsize(self.__str__())
+        return size
 
 
 class TextWrapper(BaseTextWrapper):
@@ -989,7 +978,8 @@ class TextWrapper(BaseTextWrapper):
         converted to space.
         """
         chunks = self._split_chunks(text)
-        chunks = [PILText(chunk, font) for chunk in chunks]
+        if font:
+            chunks = [PILText(chunk, font) for chunk in chunks]
         if self.fix_sentence_endings:
             self._fix_sentence_endings(chunks)
         return self._wrap_chunks(chunks)

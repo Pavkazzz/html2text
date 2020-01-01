@@ -3,7 +3,9 @@
 first issue
 
   * bit
+
   * _**bold italic**_
+
     * orange
     * apple
   * final
@@ -40,17 +42,17 @@ _`italic fixed width text`_
 
 +foo
 
-- foo - bar 
+- foo - bar
 
--foo 
+-foo
 
 not a header  
 --
 
 not a hr  
   
----   
-- - - 
+---  
+- - -
 
 c:\tmp, \\\server\path, \\\_/, foo\bar, #\\#, \\\\#
 

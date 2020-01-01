@@ -7,10 +7,7 @@ import re
 import subprocess
 import sys
 
-if sys.version_info[:2] < (2, 7):
-    import unittest2 as unittest
-else:
-    import unittest
+import unittest
 
 
 logging.basicConfig(format='%(levelname)s:%(funcName)s:%(message)s',
@@ -181,7 +178,6 @@ def generate_test(fn):
         cmdline_args.append('--ignore-tables')
 
     if base_fn.startswith('bodywidth'):
-        # module_args['unicode_snob'] = True
         module_args['body_width'] = 0
         cmdline_args.append('--body-width=0')
         func_args['bodywidth'] = 0
