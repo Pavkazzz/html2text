@@ -995,7 +995,7 @@ class TextWrapper(BaseTextWrapper):
         return self._wrap_chunks(chunks)
 
 
-def wrap(text, width=70, font=None, **kwargs):
+def wrap(text, width=70, font=None, **kwargs):  # noqa
     """Wrap a single paragraph of text, returning a list of wrapped lines.
 
     Reformat the single paragraph in 'text' so it fits in lines of no
