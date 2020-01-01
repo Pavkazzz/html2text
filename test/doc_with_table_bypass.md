@@ -36,7 +36,7 @@ Content 2
 </td>  
 <td>
 
-![200](http://lorempixel.com/200/200) Image!
+200 Image!
 
 </td> </tr> </table>
 

@@ -1,4 +1,4 @@
-# html2text
+# html2text-tg
 
 [![Build Status](https://secure.travis-ci.org/Alir3z4/html2text.png)](http://travis-ci.org/Alir3z4/html2text)
 [![Coverage Status](https://coveralls.io/repos/Alir3z4/html2text/badge.png)](https://coveralls.io/r/Alir3z4/html2text)
@@ -9,8 +9,9 @@
 [![License](http://badge.kloud51.com/pypi/license/html2text.png)](https://pypi.python.org/pypi/html2text/)
 
 
-html2text is a Python script that converts a page of HTML into clean, easy-to-read plain ASCII text. Better yet, that ASCII also happens to be valid Markdown (a text-to-HTML format).
+html2text-tg is a Python script that converts a page of HTML into clean, easy-to-read plain ASCII text. Better yet, that ASCII also happens to be valid Markdown (a text-to-HTML format).
 
+Markdown supported by telegram
 
 Usage: `html2text [(filename|url) [encoding]]`
 
@@ -63,8 +64,8 @@ Hello, [world](http://earth.google.com/)!
 
 ## How to install
 
-`html2text` is available on pypi
-https://pypi.python.org/pypi/html2text
+`html2text-tg` is available on pypi
+https://pypi.python.org/pypi/html2text-tg
 
 ```
 $ pip install html2text
@@ -73,15 +74,10 @@ $ pip install html2text
 
 ## How to run unit tests
 
-    PYTHONPATH=$PYTHONPATH:. coverage run --source=html2text setup.py test -v
-
-To see the coverage results:
-    
-    coverage combine
-    coverage html
-
-then open the `./htmlcov/index.html` file in your browser.
+```
+$ python -m unittest
+```
 
 ## Documentation
 
-Documentation lives [here](https://github.com/Alir3z4/html2text/blob/master/docs/usage.md)
+Documentation lives [here](https://github.com/pavkazzz/html2text/blob/master/docs/usage.md)

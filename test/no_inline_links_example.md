@@ -2,8 +2,6 @@
 ][3]][3]][3]
 
    [1]: http://google.com
-
-   [2]: http://example.com (Example title)
-
-   [3]: http://example.com (abc)
+   [2]: http://example.com
+   [3]: http://example.com
 

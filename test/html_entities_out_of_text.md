@@ -1,2 +1,2 @@
-[allas: Country Manager](http://thth)
+[állás: Country Manager](http://thth)
 

@@ -50,15 +50,15 @@ class RunTests(Command):
 
 
 setup(
-    name="html2text",
+    name="html2text-tg",
     version=".".join(map(str, __import__('html2text').__version__)),
     description="Turn HTML into equivalent Markdown-structured text.",
     long_description=read_md('README.md'),
     author="Aaron Swartz",
     author_email="me@aaronsw.com",
-    maintainer='Alireza Savand',
-    maintainer_email='alireza.savand@gmail.com',
-    url='https://github.com/Alir3z4/html2text/',
+    maintainer='Pavka Mosein',
+    maintainer_email='pavkazzz@mail.ru',
+    url='https://github.com/pavkazzz/html2text/',
     cmdclass={'test': RunTests},
     platforms='OS Independent',
     classifiers=[
