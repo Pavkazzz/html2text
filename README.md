@@ -1,19 +1,18 @@
-# html2text-tg
+# html2texttg
 
-[![Build Status](https://secure.travis-ci.org/Alir3z4/html2text.png)](http://travis-ci.org/Alir3z4/html2text)
-[![Coverage Status](https://coveralls.io/repos/Alir3z4/html2text/badge.png)](https://coveralls.io/r/Alir3z4/html2text)
-[![Downloads](http://badge.kloud51.com/pypi/d/html2text.png)](https://pypi.python.org/pypi/html2text/)
-[![Version](http://badge.kloud51.com/pypi/v/html2text.png)](https://pypi.python.org/pypi/html2text/)
-[![Wheel?](http://badge.kloud51.com/pypi/wheel/html2text.png)](https://pypi.python.org/pypi/html2text/)
-[![Format](http://badge.kloud51.com/pypi/format/html2text.png)](https://pypi.python.org/pypi/html2text/)
-[![License](http://badge.kloud51.com/pypi/license/html2text.png)](https://pypi.python.org/pypi/html2text/)
+[![Build Status](https://github.com/Pavkazzz/html2texttg/workflows/Python%20packages/badge.svg)](http://travis-ci.org/Alir3z4/html2text)
+[![Downloads](http://badge.kloud51.com/pypi/d/html2texttg.png)](https://pypi.python.org/pypi/html2text/)
+[![Version](http://badge.kloud51.com/pypi/v/html2texttg.png)](https://pypi.python.org/pypi/html2text/)
+[![Wheel?](http://badge.kloud51.com/pypi/wheel/html2texttg.png)](https://pypi.python.org/pypi/html2text/)
+[![Format](http://badge.kloud51.com/pypi/format/html2texttg.png)](https://pypi.python.org/pypi/html2text/)
+[![License](http://badge.kloud51.com/pypi/license/html2texttg.png)](https://pypi.python.org/pypi/html2text/)
 
 
 html2text-tg is a Python script that converts a page of HTML into clean, easy-to-read plain ASCII text. Better yet, that ASCII also happens to be valid Markdown (a text-to-HTML format).
 
 Markdown supported by telegram
 
-Usage: `html2text [(filename|url) [encoding]]`
+Usage: `html2texttg [(filename|url) [encoding]]`
 
 | Option                                                 | Description
 |--------------------------------------------------------|---------------------------------------------------
@@ -30,9 +29,9 @@ For a complete list of options see the [docs](https://github.com/Alir3z4/html2te
 Or you can use it from within `Python`:
 
 ```
->>> import html2text
+>>> import html2texttg
 >>>
->>> print(html2text.html2text("<p><strong>Zed's</strong> dead baby, <em>Zed's</em> dead.</p>"))
+>>> print(html2texttg.html2text("<p><strong>Zed's</strong> dead baby, <em>Zed's</em> dead.</p>"))
 **Zed's** dead baby, _Zed's_ dead.
 
 ```
@@ -40,9 +39,9 @@ Or you can use it from within `Python`:
 
 Or with some configuration options:
 ```
->>> import html2text
+>>> import html2texttg
 >>>
->>> h = html2text.HTML2Text()
+>>> h = html2texttg.HTML2Text()
 >>> # Ignore converting links from HTML
 >>> h.ignore_links = True
 >>> print h.handle("<p>Hello, <a href='http://earth.google.com/'>world</a>!")
@@ -64,11 +63,11 @@ Hello, [world](http://earth.google.com/)!
 
 ## How to install
 
-`html2text-tg` is available on pypi
-https://pypi.python.org/pypi/html2text-tg
+`html2texttg` is available on pypi
+https://pypi.python.org/pypi/html2texttg
 
 ```
-$ pip install html2text
+$ pip install html2texttg
 ```
 
 

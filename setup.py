@@ -1,66 +1,41 @@
 # coding: utf-8
-import sys
+import os
+from importlib.machinery import SourceFileLoader
 
-from setuptools import setup, Command, find_packages
+from setuptools import setup, find_packages
 
-
-def read_md_convert(f):
-    return convert(f, 'rst')
-
-
-def read_md_open(f):
-    return open(f, 'r').read()
-
+module_name = "html2texttg"
 
 try:
-    from pypandoc import convert
+    version = SourceFileLoader(
+        module_name,
+        os.path.join(module_name, 'version.py')
+    ).load_module()
 
-    read_md = read_md_convert
-except ImportError:
-    read_md = read_md_open
+    version_info = version.version_info
+except FileNotFoundError:
+    version_info = (0, 0, 0)
 
-requires_list = []
-try:
-    import unittest2 as unittest
-except ImportError:
-    import unittest
-else:
-    if sys.version_info <= (2, 6):
-        requires_list.append("unittest2")
+__version__ = '{}.{}.{}'.format(*version_info)
 
 
-class RunTests(Command):
-    """
-    New setup.py command to run all tests for the package.
-    """
-    description = "run all tests for the package"
-
-    user_options = []
-
-    def initialize_options(self):
-        pass
-
-    def finalize_options(self):
-        pass
-
-    def run(self):
-        tests = unittest.TestLoader().discover('.')
-        runner = unittest.TextTestRunner()
-        results = runner.run(tests)
-        sys.exit(not results.wasSuccessful())
+def load_requirements(fname):
+    """ load requirements from a pip requirements file """
+    with open(fname) as f:
+        line_iter = (line.strip() for line in f.readlines())
+        return [line for line in line_iter if line and line[0] != '#']
 
 
 setup(
-    name="html2text-tg",
-    version=".".join(map(str, (2018, 1, 9))),
-    description="Turn HTML into equivalent Markdown-structured text.",
-    long_description=read_md('README.md'),
+    name=module_name,
+    version=__version__,
+    description="Turn HTML into equivalent Markdown-structured text. Telegram adapted.",
+    long_description=open('README.md').read(),
     author="Aaron Swartz",
     author_email="me@aaronsw.com",
     maintainer='Pavka Mosein',
     maintainer_email='pavkazzz@mail.ru',
     url='https://github.com/pavkazzz/html2text/',
-    cmdclass={'test': RunTests},
     platforms='OS Independent',
     classifiers=[
         'Development Status :: 5 - Production/Stable',
@@ -76,12 +51,11 @@ setup(
     ],
     entry_points="""
         [console_scripts]
-        html2text=html2text.cli:main
+        html2texttg=html2texttg.cli:main
     """,
     license='GNU GPL 3',
-    requires=requires_list,
-    install_requires=["Pillow-SIMD"],
+    install_requires=load_requirements('requirements.txt'),
     packages=find_packages(exclude=['test']),
     include_package_data=True,
-    zip_safe=False,
+    long_description_content_type="text/markdown"
 )

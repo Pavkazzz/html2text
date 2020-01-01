@@ -1,6 +1,6 @@
 import codecs
 import glob
-import html2text
+import html2texttg
 import logging
 import os
 import re
@@ -25,7 +25,7 @@ def cleanup_eol(clean_str):
 
 
 def test_module(fn, google_doc=False, **kwargs):
-    h = html2text.HTML2Text()
+    h = html2texttg.HTML2Text()
     h.fn = fn
 
     if google_doc:
@@ -46,7 +46,7 @@ def test_module(fn, google_doc=False, **kwargs):
 
 def test_command(fn, *args):
     args = list(args)
-    cmd = [sys.executable, '-m', 'html2text.__init__']
+    cmd = [sys.executable, '-m', 'html2texttg.__init__']
 
     if '--googledoc' in args:
         args.remove('--googledoc')
@@ -70,7 +70,7 @@ def test_command(fn, *args):
 
 def test_function(fn, **kwargs):
     with open(fn) as inf:
-        actual = html2text.html2text(inf.read(), **kwargs)
+        actual = html2texttg.html2text(inf.read(), **kwargs)
     result = get_baseline(fn)
     return result, actual
 
@@ -95,14 +95,14 @@ class TestHTML2Text(unittest.TestCase):
 
     def test_html_escape(self):
         self.assertEqual(
-            html2text.compat.html_escape('<pre>and then<div> & other tags'),
+            html2texttg.compat.html_escape('<pre>and then<div> & other tags'),
             '&lt;pre&gt;and then&lt;div&gt; &amp; other tags'
         )
 
     def test_unescape(self):
         self.assertEqual(
             '<pre>and then<div> & other tags',
-            html2text.unescape(
+            html2texttg.unescape(
                 '&lt;pre&gt;and then&lt;div&gt; &amp; other tags'
             )
         )
@@ -112,7 +112,7 @@ class TestHTML2Text(unittest.TestCase):
             return True
 
     def test_tag_callback(self):
-        h = html2text.HTML2Text()
+        h = html2texttg.HTML2Text()
         h.tag_callback = self._skip_certain_tags
         ret = h.handle(
             'this is a <b>txt</b> and this is a'

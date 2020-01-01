@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 """html2text: Turn HTML into equivalent Markdown-structured text."""
-from __future__ import division
-from __future__ import unicode_literals
 
 import re
 import sys
@@ -14,10 +12,10 @@ try:
 except ImportError:  # pragma: no cover
     pass
 
-from html2text.compat import urlparse, HTMLParser
-from html2text import config
+from html2texttg.compat import urlparse, HTMLParser
+from html2texttg import config
 
-from html2text.utils import (
+from html2texttg.utils import (
     name2cp,
     unifiable_n,
     google_text_emphasis,
@@ -1000,6 +998,6 @@ def wrap(text, width=70, font=None, **kwargs):  # noqa
 
 
 if __name__ == "__main__":
-    from html2text.cli import main
+    from html2texttg.cli import main
 
     main()

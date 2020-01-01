@@ -1,7 +1,7 @@
 import sys
 
-from html2text import config
-from html2text.compat import htmlentitydefs
+from html2texttg import config
+from html2texttg.compat import htmlentitydefs
 
 
 def name2cp(k):

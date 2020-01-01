@@ -1,9 +1,9 @@
 import optparse
 import warnings
 
-from html2text import HTML2Text, config
-from html2text.compat import urllib
-from html2text.utils import wrapwrite, wrap_read
+from html2texttg import HTML2Text, config
+from html2texttg.compat import urllib
+from html2texttg.utils import wrapwrite, wrap_read
 
 __version__ = (2018, 1, 9)
 

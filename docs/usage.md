@@ -105,7 +105,7 @@ Options that are not in the config.py file:
     - strong_mark is the characer used when replacing the `<strong>` tag. It defaults to `**`.
 
 To alter any option the procedure is to create a parser with
-`parser = html2text.HTML2Text()` and to set the option on the parser.
+`parser = html2texttg.HTML2Text()` and to set the option on the parser.
 example: `parser.unicode_snob = True` to set the UNICODE_SNOB option.
 
 
