@@ -14,6 +14,7 @@ def read_md_open(f):
 
 try:
     from pypandoc import convert
+
     read_md = read_md_convert
 except ImportError:
     read_md = read_md_open
@@ -51,7 +52,7 @@ class RunTests(Command):
 
 setup(
     name="html2text-tg",
-    version=".".join(map(str, __import__('html2text').__version__)),
+    version=".".join(map(str, (2018, 1, 9))),
     description="Turn HTML into equivalent Markdown-structured text.",
     long_description=read_md('README.md'),
     author="Aaron Swartz",
@@ -79,6 +80,8 @@ setup(
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
     ],
     entry_points="""
         [console_scripts]
@@ -86,6 +89,7 @@ setup(
     """,
     license='GNU GPL 3',
     requires=requires_list,
+    install_requires=["Pillow-SIMD"],
     packages=find_packages(exclude=['test']),
     include_package_data=True,
     zip_safe=False,
