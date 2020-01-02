@@ -11,3 +11,4 @@ env/
 venv/
 .c9/
 .vscode
+html2texttg/version.py
